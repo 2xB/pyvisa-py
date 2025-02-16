@@ -40,7 +40,7 @@ class PyVisaLibrary(highlevel.VisaLibraryBase):
     """
 
     #: Live session object identified by a randon session ID
-    sessions: Dict[int, sessions.Session]
+    sessions: Dict[int, Session]
 
     # Try to import packages implementing lower level functionality.
     try:
@@ -108,7 +108,7 @@ class PyVisaLibrary(highlevel.VisaLibraryBase):
         session = None
 
         while session is None or session in self.sessions:
-            session = random.randint(1000000, 9999999)
+            session = VISASession(random.randint(1000000, 9999999))
 
         self.sessions[session] = obj
         return session
@@ -461,7 +461,7 @@ class PyVisaLibrary(highlevel.VisaLibraryBase):
 
         """
         return (
-            cast(VISARMSession, self._register(self)),
+            cast(VISARMSession, 1),
             self.handle_return_value(None, StatusCode.success),
         )
 
