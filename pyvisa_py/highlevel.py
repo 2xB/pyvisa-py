@@ -18,6 +18,7 @@ from pyvisa.util import DebugInfo, LibraryPath
 
 from . import sessions
 from .common import LOGGER
+from .sessions import Session
 
 
 class PyVisaLibrary(highlevel.VisaLibraryBase):
@@ -98,7 +99,7 @@ class PyVisaLibrary(highlevel.VisaLibraryBase):
         # Map session handle to session object.
         self.sessions = {}
 
-    def _register(self, obj: object) -> VISASession:
+    def _register(self, obj: Session) -> VISASession:
         """Creates a random but unique session handle for a session object.
 
         Register it in the sessions dictionary and return the value.
